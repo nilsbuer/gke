@@ -12,6 +12,6 @@ spec:
         command: ["perl",  "-Mbignum=bpi", "-wle", "print bpi(200) =~ s/(.{100})/$1\\n/gr"]
       - name: hello
         image: busybox
-        command: ["sh", "-c", "echo Hello, Google Team!"]
+        command: ["sh", "-c", "echo Hello, Google!"]
       restartPolicy: Never
   backoffLimit: 4
