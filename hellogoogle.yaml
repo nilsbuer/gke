@@ -1,17 +1,32 @@
-apiVersion: batch/v1
-kind: Job
-metadata:
-  name: gkejobfromgithub
-  namespace: default
-spec:
-  template:
-    spec:
-      containers:
-      - name: pi
-        image: perl:5.34.0
-        command: ["perl",  "-Mbignum=bpi", "-wle", "print bpi(200) =~ s/(.{100})/$1\\n/gr"]
-      - name: hello
-        image: busybox
-        command: ["sh", "-c", "echo Hello, Google Team!"]
-      restartPolicy: Never
-  backoffLimit: 4
+{
+    "apiVersion": "batch/v1",
+    "kind": "Job",
+    "metadata": {
+        "name": "hello-google-job",
+        "namespace": "default"
+    },
+    "spec": {
+        "ttlSecondsAfterFinished": 3600,
+        "parallelism": 1,
+        "completions": 1,
+        "activeDeadlineSeconds": 1800,
+        "backoffLimit": 6,
+        "template": {
+            "metadata": {
+                "name": "hello-google"
+            },
+            "spec": {
+                "containers": [
+                    {
+                        "name": "hello-google",
+                        "image": "busybox",
+                        "command": [
+                            "sh", "-c", "echo Hello GKE Team"
+                        ]
+                    }
+                ],
+                "restartPolicy": "Never"
+            }
+        }
+    }
+}
