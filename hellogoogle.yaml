@@ -2,7 +2,7 @@
     "apiVersion": "batch/v1",
     "kind": "Job",
     "metadata": {
-        "name": "pi-json-name",
+        "name": "pi-calculation",
         "namespace": "default"
     },
     "spec": {
