@@ -8,6 +8,7 @@ spec:
     metadata:
       name: gkejob
     spec:
+      restartPolicy: Never
       containers:
         - name: hello
           image: busybox
@@ -15,5 +16,4 @@ spec:
             - "sh"
             - "-c"
             - "echo Hello, Google Team!"
-      restartPolicy: Never
   backoffLimit: 4
