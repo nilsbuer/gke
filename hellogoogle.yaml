@@ -2,7 +2,7 @@
     "apiVersion": "batch/v1",
     "kind": "Job",
     "metadata": {
-        "name": "hello-google-job",
+        "name": "pi-json-name",
         "namespace": "default"
     },
     "spec": {
@@ -13,15 +13,34 @@
         "backoffLimit": 6,
         "template": {
             "metadata": {
-                "name": "hello-google"
+                "name": "pi"
             },
             "spec": {
                 "containers": [
                     {
+                        "name": "pi",
+                        "image": "perl:5.34.0",
+                        "securityContext": {
+                            "allowPrivilegeEscalation": false,
+                            "capabilities": {
+                                "drop": [
+                                    "ALL"
+                                ]
+                            }
+                        },
+                        "command": [
+                            "perl",
+                            "-Mbignum=bpi",
+                            "-wle",
+                            "print bpi(20)"
+                        ]
+                    },
+                    {
                         "name": "hello-google",
                         "image": "busybox",
                         "command": [
-                            "sh", "-c", "echo Hello GKE Team"
+                            "echo",
+                            "Hello GKE Team"
                         ]
                     }
                 ],
