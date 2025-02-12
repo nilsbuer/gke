@@ -15,5 +15,5 @@ spec:
           command:
             - "sh"
             - "-c"
-            - "echo Hello, SB Sales team !"
+            - "echo Hello, Google team !"
   backoffLimit: 4
